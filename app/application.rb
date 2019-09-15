@@ -3,20 +3,13 @@ class Application
   def call(env)
     resp = Rack::Response.new
  
-    time = Kernel.rand(1..20)
-    time = Kernel.rand(1..20)
-  
- 
-    resp.write "#{num_1}\n"
-    resp.write "#{num_2}\n"
-    resp.write "#{num_3}\n"
- 
-    if
-      resp.write "You Win"
+    if Time.now.hour.between?(0, 11)
+      resp.write "Good Morning!"
+    elsif Time.now.hour.between?(12, 17)
+      resp.write "Good Afternoon."
     else
-      resp.write "You Lose"
+      resp.write "Good Evening!"
     end
- 
     resp.finish
   end
 end
